@@ -1,0 +1,26 @@
+
+on: 
+  push:
+    branches:
+      - main
+
+name: att
+
+jobs:
+  att:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@master
+    
+    - uses: okteto/context@latest
+      with:
+        token: ${{ secrets.OKTETO_TOKEN }}
+
+    - name: "Trigger the pipeline"
+      uses: okteto/pipeline@latest
+      with:
+        name: try82718
+        namespace: atalan-marksmith3981274
+        timeout: 8m
